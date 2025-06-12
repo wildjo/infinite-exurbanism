@@ -208,7 +208,7 @@ const projChart = new Chart(ctxProj, {
   options:{
     responsive:true,
     scales:{
-      y:{type:'log',ticks:{callback:v=>v},min:100,max:1000000}
+      y:{type:'logarithmic',ticks:{callback:v=>v},min:100,max:1000000}
     }
   }
 });

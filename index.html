@@ -27,26 +27,7 @@
  footer h2{margin-top:0}
 ol{padding-left:1.2rem}
 
-/* --- NEW: slider styling --- */
-.slider-group{margin:1rem 0}
-.slider-group label{font-size:.9rem}
-.slider-group input[type=range]{width:200px;margin-left:.5rem}
-
-/* --- NEW: voice-over player bubble & hover cue --- */
-.narrated{cursor:pointer}               /* optional, tells users it’s interactive */
- #voiceWrap{
-   position:fixed;bottom:1.5rem;left:1.5rem;  /* tuck in opposite corner from nav */
-   display:none;align-items:center;gap:.6rem;
-   background:#fff;border:2px solid var(--teal);
-   box-shadow:0 3px 10px rgba(0,0,0,.15);
-   padding:.6rem .9rem;border-radius:.75rem;z-index:9999
- }
- #voiceWrap button{
-   appearance:none;border:none;background:var(--teal);
-   color:#fff;font-size:.9rem;line-height:1;padding:.4rem .7rem;
-   border-radius:.4rem;cursor:pointer
- }
- #voiceWrap button:active{transform:scale(.96)}
+  /* removed interactive player & slider styles */
 </style>
 </head>
 <body>
@@ -59,7 +40,7 @@ ol{padding-left:1.2rem}
  <h1>Why the technologies of abundance<br> that built the metropolis of today<br>
 	 will lead us back to where it all began…</h1>
  <h2>1. A Century on Fast-Forward</h2>
- <p class="narrated" data-audio="01-intro.mp4">In 1950 barely <strong>30%</strong> of humanity lived in cities; by 2020 that share exceeded <strong>56%</strong>, powered by highways, antibiotics, silicon chips, and the promise of steady wages.  Urbanists framed density as civilization’s best climate hack—shorter commutes, smaller homes, richer streets.  That narrative still holds truth, yet the tools it celebrated are quietly rewiring the equation.  High-bandwidth networks, solar micro-grids, and autonomous logistics are erasing the old requirement to pile people and capital on the same GPS coordinates.<br><br>
+ <p>In 1950 barely <strong>30%</strong> of humanity lived in cities; by 2020 that share exceeded <strong>56%</strong>, powered by highways, antibiotics, silicon chips, and the promise of steady wages.  Urbanists framed density as civilization’s best climate hack—shorter commutes, smaller homes, richer streets.  That narrative still holds truth, yet the tools it celebrated are quietly rewiring the equation.  High-bandwidth networks, solar micro-grids, and autonomous logistics are erasing the old requirement to pile people and capital on the same GPS coordinates.<br><br>
  This presentation maps two crossing curves.  One is the <em>social trend</em> of urbanization that has dominated since the Industrial Revolution.  The other is a suite of <em>technological trends</em>—remote work, automation, cheap clean energy—whose long arcs now bend opportunity <em>outward</em>, toward smaller towns, “rurban” fringes, and regenerated village cores.  Follow the inflection and you glimpse an ecological, economical future that feels less like sprawl and more like <em>Infinite Exurbanism</em>.</p>
  <canvas id="chartUrban" aria-label="Line graph showing rising global urban population share from 1950 to 2050" role="img"></canvas>
  <p class="caption">Figure 1 Urban share of world population, 1950-2050 (UN projection).</p>
@@ -67,7 +48,7 @@ ol{padding-left:1.2rem}
 
 <section id="drivers">
  <h2>2. Why We Packed Into Cities</h2>
- <p class="narrated" data-audio="02-drivers.mp4"><strong>Jobs first.</strong>  Factory floors and office towers concentrated capital and talent.  A single percentage-point rise in urban population correlated with roughly 1 % higher GDP per capita through the post-war boom.<sup>1</sup>  Cities also promised cultural ferment: jazz clubs, universities, queer bars, and immigrant kitchens, all within a subway ride.<br><br>
+ <p><strong>Jobs first.</strong>  Factory floors and office towers concentrated capital and talent.  A single percentage-point rise in urban population correlated with roughly 1 % higher GDP per capita through the post-war boom.<sup>1</sup>  Cities also promised cultural ferment: jazz clubs, universities, queer bars, and immigrant kitchens, all within a subway ride.<br><br>
  <strong>Tech that eased the crowd.</strong>  Elevators, concrete, and HVAC stacked people skyward; penicillin tamed density’s diseases; later, broadband turned any cafe into a trading floor.  Suburbs emerged as a middle-class compromise—commutable distance paired with a patch of lawn—but they still orbited the metro core.</p>
 </section>
 
@@ -79,14 +60,14 @@ ol{padding-left:1.2rem}
   <li><strong>Automation.</strong> Robotics and AI carve the labor share out of manufacturing, logistics, and even surgery, shrinking the wage premium of big ports and rail hubs.</li>
   <li><strong>Cheap clean kilowatts.</strong> Solar-PV costs fell <em>89 %</em> between 2010-2023; rural micro-grids now power farms and workshops miles from a substation.<sup>4</sup></li>
  </ol>
- <p class="narrated" data-audio="03-pivot.mp4">The same fiber backbones that once funneled data <em>into</em> skyscrapers now let architects sketch from Montana and radiologists read scans from Oaxaca.  When productivity floats in the cloud, the gravitational pull of the CBD weakens.</p>
+ <p>The same fiber backbones that once funneled data <em>into</em> skyscrapers now let architects sketch from Montana and radiologists read scans from Oaxaca.  When productivity floats in the cloud, the gravitational pull of the CBD weakens.</p>
  <canvas id="chartTech" aria-label="Dual-axis graph comparing growth of remote work and decline in solar PV costs" role="img"></canvas>
  <p class="caption">Figure 2 Key technological enablers favoring decentralized settlement.<br><span style="font-size:.8em">(Left axis: % U.S. full-time remote workers; Right axis: solar-PV cost index, 2010=100.)</span></p>
 </section>
 
 <section id="future">
  <h2>4. Toward <em>Infinite Exurbanism</em></h2>
- <p class="narrated" data-audio="04-future.mp4">Combine those vectors and a new settlement pattern emerges:</p>
+ <p>Combine those vectors and a new settlement pattern emerges:</p>
  <ul>
   <li><strong>Micro-communities</strong> of 500 – 5 000 people, stitched by fiber and drone, share maker-spaces, community solar, and bioremediation wetlands.</li>
   <li><strong>Polycentric regions</strong> replace the spoke-and-hub commute: autonomous e-shuttles link villages for weekly markets; most daily interaction happens online.</li>
@@ -97,23 +78,9 @@ ol{padding-left:1.2rem}
 
 <section id="call">
  <h2>5. Your Turn as Architect</h2>
- <p class="narrated" data-audio="05-call.mp4">If home and work are decoupled, communities can compete on meaning, not just wages.  Rural cooperatives that embrace broadband, universal design, and circular economics will attract talent and capital—without importing sprawl.  The next decade’s civic innovators will write zoning that welcomes accessory dwellings, spectrum policy that treats wireless like water, and cultural storytelling that paints the countryside as lab, not museum.  In short: we are called, in Buckminster Fuller’s words, “to be architects of the future, not its victims.”  The drawings start now—where will <em>you</em> pin your next village on the map?</p>
+ <p>If home and work are decoupled, communities can compete on meaning, not just wages.  Rural cooperatives that embrace broadband, universal design, and circular economics will attract talent and capital—without importing sprawl.  The next decade’s civic innovators will write zoning that welcomes accessory dwellings, spectrum policy that treats wireless like water, and cultural storytelling that paints the countryside as lab, not museum.  In short: we are called, in Buckminster Fuller’s words, “to be architects of the future, not its victims.”  The drawings start now—where will <em>you</em> pin your next village on the map?</p>
 
- <div class="slider-group">
-  <label>Energy Cost Index (0.5–2×):
-   <input id="energySlider" type="range" min="0.5" max="2" step="0.01" value="1">
-   <span id="energyVal">1.00</span>
-  </label><br>
-  <label>Remote Work (%) (20–60):
-   <input id="remoteSlider" type="range" min="20" max="60" step="1" value="40">
-   <span id="remoteVal">40%</span>
-  </label><br>
-  <label>Comm Infrastructure (0–100):
-   <input id="commSlider" type="range" min="0" max="100" step="1" value="50">
-   <span id="commVal">50</span>
-  </label>
- </div>
- <canvas id="cityGraph" width="600" height="400" aria-label="Interactive forecast of city size" role="img"></canvas>
+  <!-- interactive projection removed -->
 </section>
 
 <footer id="works">
@@ -136,12 +103,7 @@ ol{padding-left:1.2rem}
  <button onclick="jump('call')">Act Now</button>
 </nav>
 
-<!-- NEW: mini player bubble + hidden audio element -->
-<div id="voiceWrap">
-  <button id="rewindBtn" title="Rewind 5 s">⟲ 5 s</button>
-  <button id="stopBtn"   title="Stop">■</button>
-  <audio id="voiceAudio"></audio>
-</div>
+<!-- narration player removed -->
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
@@ -181,96 +143,9 @@ new Chart(ctx2, {
   }
 });
 
-// ----- interactive projection chart -----
-// UN urbanization share extended past 2050 on the same slope
-const years = [2025,2030,2035,2040,2045,2050,2055,2060,2065,2070,2075,2080];
-const baseCity = [580000,600000,620000,640000,660000,680000,700000,720000,740000,760000,780000,800000];
-const ctxProj = document.getElementById('cityGraph').getContext('2d');
-const energy = document.getElementById('energySlider');
-const remote = document.getElementById('remoteSlider');
-const comm   = document.getElementById('commSlider');
-const eVal = document.getElementById('energyVal');
-const rVal = document.getElementById('remoteVal');
-const cVal = document.getElementById('commVal');
+// interactive projection removed
 
-const sliderWidth = 2; // approx 1.5 pt
-const dashed = [6,4];
-
-const projChart = new Chart(ctxProj, {
-  type:'line',
-  data:{
-    labels:years,
-    datasets:[
-      {label:'Energy Cost Effect', data:[], borderColor:'#0072B2', borderWidth:sliderWidth, borderDash:dashed, fill:false},
-      {label:'Remote Work Effect', data:[], borderColor:'#D55E00', borderWidth:sliderWidth, borderDash:dashed, fill:false},
-      {label:'Comm Infra Effect',  data:[], borderColor:'#009E73', borderWidth:sliderWidth, borderDash:dashed, fill:false},
-      {label:'Projected City Size', data:[], borderColor:'#000', borderWidth:sliderWidth*3, fill:false}
-    ]
-  },
-  options:{
-    responsive:true,
-    scales:{
-      y:{type:'logarithmic',ticks:{callback:v=>v},min:100,max:1000000}
-    }
-  }
-});
-
-function updateSliderLabels(){
-  eVal.textContent = parseFloat(energy.value).toFixed(2);
-  rVal.textContent = remote.value + '%';
-  cVal.textContent = comm.value;
-}
-
-function calc(size,e,r,c){
-  return size*Math.pow(1/e,2)*Math.pow(1-r/100,2)*Math.pow(1-c/100,2);
-}
-
-function drawProj(){
-  updateSliderLabels();
-  const e=parseFloat(energy.value), r=parseFloat(remote.value), c=parseFloat(comm.value);
-  projChart.data.datasets[0].data = baseCity.map(size=>calc(size,e,40,50));
-  projChart.data.datasets[1].data = baseCity.map(size=>calc(size,1,r,50));
-  projChart.data.datasets[2].data = baseCity.map(size=>calc(size,1,40,c));
-  projChart.data.datasets[3].data = baseCity.map(size=>calc(size,e,r,c));
-  projChart.update();
-}
-
-energy.oninput = remote.oninput = comm.oninput = drawProj;
-drawProj();
-
-/* ——— mini-player logic ——— */
-const voice    = document.getElementById('voiceAudio'),
-      wrapper  = document.getElementById('voiceWrap'),
-      rewindBtn= document.getElementById('rewindBtn'),
-      stopBtn  = document.getElementById('stopBtn');
-
-function show() { wrapper.style.display = 'flex'; }
-function hide() { wrapper.style.display = 'none'; }
-
-/* Play clip on *click/tap only* (no hover listener) */
-function playClip(el) {
-  const file = el.dataset.audio;
-  if (!file) return;
-
-  const src = `narration/${file}`;
-  if (voice.src.endsWith(src) && !voice.paused) return;  // already playing
-
-  voice.src = src;
-  voice.currentTime = 0;
-  voice.play().then(show).catch(console.warn);
-}
-
-document.querySelectorAll('.narrated').forEach(el => {
-  el.addEventListener('click', () => playClip(el));   // desktop click & mobile tap
-});
-
-rewindBtn.addEventListener('click', () => {
-  voice.currentTime = Math.max(0, voice.currentTime - 5);
-});
-stopBtn.addEventListener('click', () => {
-  voice.pause(); voice.currentTime = 0; hide();
-});
-voice.addEventListener('ended', hide);
+// voice narration removed
 
 /* helper for side-nav buttons */
 function jump(id) {

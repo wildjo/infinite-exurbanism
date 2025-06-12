@@ -182,6 +182,10 @@ new Chart(ctx2, {
 });
 
 // ----- interactive projection chart -----
+// UN urbanization share extended past 2050 on the same slope
+const years = [2025,2030,2035,2040,2045,2050,2055,2060,2065,2070,2075,2080];
+const baseCity = [580000,600000,620000,640000,660000,680000,700000,720000,740000,760000,780000,800000];
+=======
 const years = Array.from({length:11}, (_,i)=>2025+i*10);
 const ctxProj = document.getElementById('cityGraph').getContext('2d');
 const energy = document.getElementById('energySlider');
@@ -220,17 +224,16 @@ function updateSliderLabels(){
 }
 
 function calc(size,e,r,c){
-  return size*Math.pow(1/e,1)*Math.pow(1-r/100,1)*Math.pow(1-c/100,1);
+  return size*Math.pow(1/e,2)*Math.pow(1-r/100,2)*Math.pow(1-c/100,2);
 }
 
 function drawProj(){
   updateSliderLabels();
   const e=parseFloat(energy.value), r=parseFloat(remote.value), c=parseFloat(comm.value);
-  const base=1000000;
-  projChart.data.datasets[0].data = years.map(()=>calc(base,e,40,50));
-  projChart.data.datasets[1].data = years.map(()=>calc(base,1,r,50));
-  projChart.data.datasets[2].data = years.map(()=>calc(base,1,40,c));
-  projChart.data.datasets[3].data = years.map(()=>calc(base,e,r,c));
+  projChart.data.datasets[0].data = baseCity.map(size=>calc(size,e,40,50));
+  projChart.data.datasets[1].data = baseCity.map(size=>calc(size,1,r,50));
+  projChart.data.datasets[2].data = baseCity.map(size=>calc(size,1,40,c));
+  projChart.data.datasets[3].data = baseCity.map(size=>calc(size,e,r,c));
   projChart.update();
 }
 

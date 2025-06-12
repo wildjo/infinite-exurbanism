@@ -177,7 +177,7 @@ new Chart(ctx2, {
 });
 
 // ----- interactive projection chart -----
-const years = Array.from({length:11}, (_,i)=>2025+i*10);
+const years = [2020, 2030, 2040, 2050, 2060, 2070, 2080];
 const ctxProj = document.getElementById('cityGraph').getContext('2d');
 const energy = document.getElementById('energySlider');
 const remote = document.getElementById('remoteSlider');
@@ -238,7 +238,6 @@ const voice    = document.getElementById('voiceAudio'),
       rewindBtn= document.getElementById('rewindBtn'),
       stopBtn  = document.getElementById('stopBtn');
 
-const years = [2020, 2030, 2040, 2050, 2060, 2070, 2080];
 const baseUrban = [56, 60, 64, 68, 71, 74, 76];
 
 function scaleX(year) {

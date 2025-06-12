@@ -25,7 +25,12 @@
  nav button:focus{outline:2px dashed #fff;outline-offset:2px}
  footer{background:#e1e4e3;padding:1.5rem 1rem;font-size:.9rem}
  footer h2{margin-top:0}
-ol{padding-left:1.2rem}
+ ol{padding-left:1.2rem}
+
+ /* controls for interactive projection */
+ .controls{margin-top:1rem}
+ .controls label{display:block;margin-bottom:.5rem}
+ input[type=range]::-webkit-slider-thumb{background:#007bff}
 
   /* removed interactive player & slider styles */
 </style>
@@ -79,8 +84,19 @@ ol{padding-left:1.2rem}
 <section id="call">
  <h2>5. Your Turn as Architect</h2>
  <p>If home and work are decoupled, communities can compete on meaning, not just wages.  Rural cooperatives that embrace broadband, universal design, and circular economics will attract talent and capital—without importing sprawl.  The next decade’s civic innovators will write zoning that welcomes accessory dwellings, spectrum policy that treats wireless like water, and cultural storytelling that paints the countryside as lab, not museum.  In short: we are called, in Buckminster Fuller’s words, “to be architects of the future, not its victims.”  The drawings start now—where will <em>you</em> pin your next village on the map?</p>
-
-  <!-- interactive projection removed -->
+ <h3>Urbanization Projection with Influencing Factors</h3>
+ <div class="controls">
+   <label>Energy Cost:
+     <input type="range" id="energy" min="0" max="100" value="50">
+   </label>
+   <label>Communication Infrastructure:
+     <input type="range" id="comms" min="0" max="100" value="50">
+   </label>
+   <label>Work Autonomy:
+     <input type="range" id="autonomy" min="0" max="100" value="50">
+   </label>
+ </div>
+ <canvas id="urbanCanvas" width="800" height="500"></canvas>
 </section>
 
 <footer id="works">
@@ -143,7 +159,78 @@ new Chart(ctx2, {
   }
 });
 
-// interactive projection removed
+const ctx = document.getElementById("urbanCanvas").getContext("2d");
+const energyInput = document.getElementById("energy");
+const commsInput = document.getElementById("comms");
+const autonomyInput = document.getElementById("autonomy");
+
+const years = [2020, 2030, 2040, 2050, 2060, 2070, 2080];
+const baseUrban = [56, 60, 64, 68, 71, 74, 76];
+
+function scaleX(year) {
+  return 80 + ((year - 2020) / 60) * 640;
+}
+function scaleY(val) {
+  return 420 - ((val - 40) / 40) * 360;
+}
+
+function drawAxes() {
+  ctx.strokeStyle = '#999';
+  ctx.lineWidth = 1;
+  ctx.beginPath(); ctx.moveTo(80, 60); ctx.lineTo(80, 420); ctx.stroke();
+  ctx.beginPath(); ctx.moveTo(80, 420); ctx.lineTo(720, 420); ctx.stroke();
+  ctx.fillStyle = '#000';
+  ctx.textAlign = 'center';
+  years.forEach(year => ctx.fillText(year, scaleX(year), 440));
+  ctx.textAlign = 'right';
+  for (let y = 40; y <= 80; y += 10) ctx.fillText(y + "%", 70, scaleY(y) + 3);
+}
+
+function drawLine(data, color, width, label) {
+  ctx.beginPath();
+  ctx.strokeStyle = color;
+  ctx.lineWidth = width;
+  ctx.moveTo(scaleX(years[0]), scaleY(data[0]));
+  for (let i = 1; i < years.length; i++) {
+    ctx.lineTo(scaleX(years[i]), scaleY(data[i]));
+  }
+  ctx.stroke();
+  ctx.fillStyle = color;
+  ctx.fillText(label, scaleX(years[years.length - 1]) + 10, scaleY(data[data.length - 1]));
+}
+
+function applyInfluence() {
+  const e = parseInt(energyInput.value);
+  const c = parseInt(commsInput.value);
+  const a = parseInt(autonomyInput.value);
+
+  const totalEffect = ((e + c + a) / 300);
+  const influence = [];
+  for (let i = 0; i < baseUrban.length; i++) {
+    const t = i / (baseUrban.length - 1);
+    const pressure = totalEffect * t * 20;
+    influence.push(Math.max(40, baseUrban[i] - pressure));
+  }
+  return { energy: influenceLine(e), comms: influenceLine(c), autonomy: influenceLine(a), adjusted: influence };
+}
+
+function influenceLine(value) {
+  return years.map((_, i) => 40 + (value / 100) * (i / (years.length - 1)) * 40);
+}
+
+function render() {
+  ctx.clearRect(0, 0, 800, 500);
+  drawAxes();
+  const lines = applyInfluence();
+  drawLine(baseUrban, '#0a5c55', 3, 'Urban % (UN Baseline)');
+  drawLine(lines.adjusted, '#000000', 2, 'Adjusted Urban %');
+  drawLine(lines.energy, '#e63946', 1, 'Energy');
+  drawLine(lines.comms, '#3a86ff', 1, 'Comms');
+  drawLine(lines.autonomy, '#ff006e', 1, 'Autonomy');
+}
+
+energyInput.oninput = commsInput.oninput = autonomyInput.oninput = render;
+render();
 
 // voice narration removed
 

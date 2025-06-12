@@ -200,7 +200,8 @@ function drawLine(data, color, width, label) {
 }
 
 function applyInfluence() {
-  const e = parseInt(energyInput.value);
+  const rawE = parseInt(energyInput.value);
+  const e = 100 - rawE; // lower energy cost has stronger decentralizing effect
   const c = parseInt(commsInput.value);
   const a = parseInt(autonomyInput.value);
 
@@ -211,11 +212,17 @@ function applyInfluence() {
     const pressure = totalEffect * t * 20;
     influence.push(Math.max(40, baseUrban[i] - pressure));
   }
-  return { energy: influenceLine(e), comms: influenceLine(c), autonomy: influenceLine(a), adjusted: influence };
+  return { energy: energyLine(rawE), comms: influenceLine(c), autonomy: influenceLine(a), adjusted: influence };
 }
 
 function influenceLine(value) {
   return years.map((_, i) => 40 + (value / 100) * (i / (years.length - 1)) * 40);
+}
+
+function energyLine(value) {
+  const start = 40 + (value / 100) * 40;
+  const end = 40;
+  return years.map((_, i) => start + (end - start) * (i / (years.length - 1)));
 }
 
 function render() {
@@ -224,7 +231,7 @@ function render() {
   const lines = applyInfluence();
   drawLine(baseUrban, '#0a5c55', 3, 'Urban % (UN Baseline)');
   drawLine(lines.adjusted, '#000000', 2, 'Adjusted Urban %');
-  drawLine(lines.energy, '#e63946', 1, 'Energy');
+  drawLine(lines.energy, '#e63946', 1, 'Energy Cost');
   drawLine(lines.comms, '#3a86ff', 1, 'Comms');
   drawLine(lines.autonomy, '#ff006e', 1, 'Autonomy');
 }

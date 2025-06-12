@@ -59,7 +59,7 @@ ol{padding-left:1.2rem}
  <h1>Why the technologies of abundance<br> that built the metropolis of today<br>
 	 will lead us back to where it all began…</h1>
  <h2>1. A Century on Fast-Forward</h2>
- <p class="narrated" data-audio="01-intro.mp4">In 1950 barely <strong>30%</strong> of humanity lived in cities; by 2020 that share exceeded <strong>56%</strong>, powered by highways, antibiotics, silicon chips, and the promise of steady wages.  Urbanists framed density as civilization’s best climate hack—shorter commutes, smaller homes, richer streets.  That narrative still holds truth, yet the tools it celebrated are quietly rewiring the equation.  High-bandwidth networks, solar micro-grids, and autonomous logistics are erasing the old requirement to pile people and capital on the same GPS coordinates.<br><br>
+ <p>In 1950 barely <strong>30%</strong> of humanity lived in cities; by 2020 that share exceeded <strong>56%</strong>, powered by highways, antibiotics, silicon chips, and the promise of steady wages.  Urbanists framed density as civilization’s best climate hack—shorter commutes, smaller homes, richer streets.  That narrative still holds truth, yet the tools it celebrated are quietly rewiring the equation.  High-bandwidth networks, solar micro-grids, and autonomous logistics are erasing the old requirement to pile people and capital on the same GPS coordinates.<br><br>
  This presentation maps two crossing curves.  One is the <em>social trend</em> of urbanization that has dominated since the Industrial Revolution.  The other is a suite of <em>technological trends</em>—remote work, automation, cheap clean energy—whose long arcs now bend opportunity <em>outward</em>, toward smaller towns, “rurban” fringes, and regenerated village cores.  Follow the inflection and you glimpse an ecological, economical future that feels less like sprawl and more like <em>Infinite Exurbanism</em>.</p>
  <canvas id="chartUrban" aria-label="Line graph showing rising global urban population share from 1950 to 2050" role="img"></canvas>
  <p class="caption">Figure 1 Urban share of world population, 1950-2050 (UN projection).</p>
@@ -67,7 +67,7 @@ ol{padding-left:1.2rem}
 
 <section id="drivers">
  <h2>2. Why We Packed Into Cities</h2>
- <p class="narrated" data-audio="02-drivers.mp4"><strong>Jobs first.</strong>  Factory floors and office towers concentrated capital and talent.  A single percentage-point rise in urban population correlated with roughly 1 % higher GDP per capita through the post-war boom.<sup>1</sup>  Cities also promised cultural ferment: jazz clubs, universities, queer bars, and immigrant kitchens, all within a subway ride.<br><br>
+ <p><strong>Jobs first.</strong>  Factory floors and office towers concentrated capital and talent.  A single percentage-point rise in urban population correlated with roughly 1 % higher GDP per capita through the post-war boom.<sup>1</sup>  Cities also promised cultural ferment: jazz clubs, universities, queer bars, and immigrant kitchens, all within a subway ride.<br><br>
  <strong>Tech that eased the crowd.</strong>  Elevators, concrete, and HVAC stacked people skyward; penicillin tamed density’s diseases; later, broadband turned any cafe into a trading floor.  Suburbs emerged as a middle-class compromise—commutable distance paired with a patch of lawn—but they still orbited the metro core.</p>
 </section>
 
@@ -79,14 +79,14 @@ ol{padding-left:1.2rem}
   <li><strong>Automation.</strong> Robotics and AI carve the labor share out of manufacturing, logistics, and even surgery, shrinking the wage premium of big ports and rail hubs.</li>
   <li><strong>Cheap clean kilowatts.</strong> Solar-PV costs fell <em>89 %</em> between 2010-2023; rural micro-grids now power farms and workshops miles from a substation.<sup>4</sup></li>
  </ol>
- <p class="narrated" data-audio="03-pivot.mp4">The same fiber backbones that once funneled data <em>into</em> skyscrapers now let architects sketch from Montana and radiologists read scans from Oaxaca.  When productivity floats in the cloud, the gravitational pull of the CBD weakens.</p>
+ <p>The same fiber backbones that once funneled data <em>into</em> skyscrapers now let architects sketch from Montana and radiologists read scans from Oaxaca.  When productivity floats in the cloud, the gravitational pull of the CBD weakens.</p>
  <canvas id="chartTech" aria-label="Dual-axis graph comparing growth of remote work and decline in solar PV costs" role="img"></canvas>
  <p class="caption">Figure 2 Key technological enablers favoring decentralized settlement.<br><span style="font-size:.8em">(Left axis: % U.S. full-time remote workers; Right axis: solar-PV cost index, 2010=100.)</span></p>
 </section>
 
 <section id="future">
  <h2>4. Toward <em>Infinite Exurbanism</em></h2>
- <p class="narrated" data-audio="04-future.mp4">Combine those vectors and a new settlement pattern emerges:</p>
+ <p>Combine those vectors and a new settlement pattern emerges:</p>
  <ul>
   <li><strong>Micro-communities</strong> of 500 – 5 000 people, stitched by fiber and drone, share maker-spaces, community solar, and bioremediation wetlands.</li>
   <li><strong>Polycentric regions</strong> replace the spoke-and-hub commute: autonomous e-shuttles link villages for weekly markets; most daily interaction happens online.</li>
@@ -136,12 +136,7 @@ ol{padding-left:1.2rem}
  <button onclick="jump('call')">Act Now</button>
 </nav>
 
-<!-- NEW: mini player bubble + hidden audio element -->
-<div id="voiceWrap">
-  <button id="rewindBtn" title="Rewind 5 s">⟲ 5 s</button>
-  <button id="stopBtn"   title="Stop">■</button>
-  <audio id="voiceAudio"></audio>
-</div>
+<!-- narration player removed -->
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
@@ -243,33 +238,82 @@ const voice    = document.getElementById('voiceAudio'),
       rewindBtn= document.getElementById('rewindBtn'),
       stopBtn  = document.getElementById('stopBtn');
 
-function show() { wrapper.style.display = 'flex'; }
-function hide() { wrapper.style.display = 'none'; }
+const years = [2020, 2030, 2040, 2050, 2060, 2070, 2080];
+const baseUrban = [56, 60, 64, 68, 71, 74, 76];
 
-/* Play clip on *click/tap only* (no hover listener) */
-function playClip(el) {
-  const file = el.dataset.audio;
-  if (!file) return;
-
-  const src = `narration/${file}`;
-  if (voice.src.endsWith(src) && !voice.paused) return;  // already playing
-
-  voice.src = src;
-  voice.currentTime = 0;
-  voice.play().then(show).catch(console.warn);
+function scaleX(year) {
+  return 80 + ((year - 2020) / 60) * 640;
+}
+function scaleY(val) {
+  return 420 - ((val - 40) / 40) * 360;
 }
 
-document.querySelectorAll('.narrated').forEach(el => {
-  el.addEventListener('click', () => playClip(el));   // desktop click & mobile tap
-});
+function drawAxes() {
+  ctx.strokeStyle = '#999';
+  ctx.lineWidth = 1;
+  ctx.beginPath(); ctx.moveTo(80, 60); ctx.lineTo(80, 420); ctx.stroke();
+  ctx.beginPath(); ctx.moveTo(80, 420); ctx.lineTo(720, 420); ctx.stroke();
+  ctx.fillStyle = '#000';
+  ctx.textAlign = 'center';
+  years.forEach(year => ctx.fillText(year, scaleX(year), 440));
+  ctx.textAlign = 'right';
+  for (let y = 40; y <= 80; y += 10) ctx.fillText(y + "%", 70, scaleY(y) + 3);
+}
 
-rewindBtn.addEventListener('click', () => {
-  voice.currentTime = Math.max(0, voice.currentTime - 5);
-});
-stopBtn.addEventListener('click', () => {
-  voice.pause(); voice.currentTime = 0; hide();
-});
-voice.addEventListener('ended', hide);
+function drawLine(data, color, width, label) {
+  ctx.beginPath();
+  ctx.strokeStyle = color;
+  ctx.lineWidth = width;
+  ctx.moveTo(scaleX(years[0]), scaleY(data[0]));
+  for (let i = 1; i < years.length; i++) {
+    ctx.lineTo(scaleX(years[i]), scaleY(data[i]));
+  }
+  ctx.stroke();
+  ctx.fillStyle = color;
+  ctx.fillText(label, scaleX(years[years.length - 1]) + 10, scaleY(data[data.length - 1]));
+}
+
+function applyInfluence() {
+  const rawE = parseInt(energyInput.value);
+  const e = 100 - rawE; // lower energy cost has stronger decentralizing effect
+  const c = parseInt(commsInput.value);
+  const a = parseInt(autonomyInput.value);
+
+  const totalEffect = ((e + c + a) / 300);
+  const influence = [];
+  for (let i = 0; i < baseUrban.length; i++) {
+    const t = i / (baseUrban.length - 1);
+    const pressure = totalEffect * t * 20;
+    influence.push(Math.max(40, baseUrban[i] - pressure));
+  }
+  return { energy: energyLine(rawE), comms: influenceLine(c), autonomy: influenceLine(a), adjusted: influence };
+}
+
+function influenceLine(value) {
+  return years.map((_, i) => 40 + (value / 100) * (i / (years.length - 1)) * 40);
+}
+
+function energyLine(value) {
+  const start = 40 + (value / 100) * 40;
+  const end = 40;
+  return years.map((_, i) => start + (end - start) * (i / (years.length - 1)));
+}
+
+function render() {
+  ctx.clearRect(0, 0, 800, 500);
+  drawAxes();
+  const lines = applyInfluence();
+  drawLine(baseUrban, '#0a5c55', 3, 'Urban % (UN Baseline)');
+  drawLine(lines.adjusted, '#000000', 2, 'Adjusted Urban %');
+  drawLine(lines.energy, '#e63946', 1, 'Energy Cost');
+  drawLine(lines.comms, '#3a86ff', 1, 'Comms');
+  drawLine(lines.autonomy, '#ff006e', 1, 'Autonomy');
+}
+
+energyInput.oninput = commsInput.oninput = autonomyInput.oninput = render;
+render();
+
+// voice narration removed
 
 /* helper for side-nav buttons */
 function jump(id) {

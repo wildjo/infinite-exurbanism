@@ -25,14 +25,28 @@
  nav button:focus{outline:2px dashed #fff;outline-offset:2px}
  footer{background:#e1e4e3;padding:1.5rem 1rem;font-size:.9rem}
  footer h2{margin-top:0}
- ol{padding-left:1.2rem}
+ol{padding-left:1.2rem}
 
- /* controls for interactive projection */
- .controls{margin-top:1rem}
- .controls label{display:block;margin-bottom:.5rem}
- input[type=range]::-webkit-slider-thumb{background:#007bff}
+/* --- NEW: slider styling --- */
+.slider-group{margin:1rem 0}
+.slider-group label{font-size:.9rem}
+.slider-group input[type=range]{width:200px;margin-left:.5rem}
 
-  /* removed interactive player & slider styles */
+/* --- NEW: voice-over player bubble & hover cue --- */
+.narrated{cursor:pointer}               /* optional, tells users it’s interactive */
+ #voiceWrap{
+   position:fixed;bottom:1.5rem;left:1.5rem;  /* tuck in opposite corner from nav */
+   display:none;align-items:center;gap:.6rem;
+   background:#fff;border:2px solid var(--teal);
+   box-shadow:0 3px 10px rgba(0,0,0,.15);
+   padding:.6rem .9rem;border-radius:.75rem;z-index:9999
+ }
+ #voiceWrap button{
+   appearance:none;border:none;background:var(--teal);
+   color:#fff;font-size:.9rem;line-height:1;padding:.4rem .7rem;
+   border-radius:.4rem;cursor:pointer
+ }
+ #voiceWrap button:active{transform:scale(.96)}
 </style>
 </head>
 <body>
@@ -83,20 +97,23 @@
 
 <section id="call">
  <h2>5. Your Turn as Architect</h2>
- <p>If home and work are decoupled, communities can compete on meaning, not just wages.  Rural cooperatives that embrace broadband, universal design, and circular economics will attract talent and capital—without importing sprawl.  The next decade’s civic innovators will write zoning that welcomes accessory dwellings, spectrum policy that treats wireless like water, and cultural storytelling that paints the countryside as lab, not museum.  In short: we are called, in Buckminster Fuller’s words, “to be architects of the future, not its victims.”  The drawings start now—where will <em>you</em> pin your next village on the map?</p>
- <h3>Urbanization Projection with Influencing Factors</h3>
- <div class="controls">
-   <label>Energy Cost:
-     <input type="range" id="energy" min="0" max="100" value="50">
-   </label>
-   <label>Communication Infrastructure:
-     <input type="range" id="comms" min="0" max="100" value="50">
-   </label>
-   <label>Work Autonomy:
-     <input type="range" id="autonomy" min="0" max="100" value="50">
-   </label>
+ <p class="narrated" data-audio="05-call.mp4">If home and work are decoupled, communities can compete on meaning, not just wages.  Rural cooperatives that embrace broadband, universal design, and circular economics will attract talent and capital—without importing sprawl.  The next decade’s civic innovators will write zoning that welcomes accessory dwellings, spectrum policy that treats wireless like water, and cultural storytelling that paints the countryside as lab, not museum.  In short: we are called, in Buckminster Fuller’s words, “to be architects of the future, not its victims.”  The drawings start now—where will <em>you</em> pin your next village on the map?</p>
+
+ <div class="slider-group">
+  <label>Energy Cost Index (0.5–2×):
+   <input id="energySlider" type="range" min="0.5" max="2" step="0.01" value="1">
+   <span id="energyVal">1.00</span>
+  </label><br>
+  <label>Remote Work (%) (20–60):
+   <input id="remoteSlider" type="range" min="20" max="60" step="1" value="40">
+   <span id="remoteVal">40%</span>
+  </label><br>
+  <label>Comm Infrastructure (0–100):
+   <input id="commSlider" type="range" min="0" max="100" step="1" value="50">
+   <span id="commVal">50</span>
+  </label>
  </div>
- <canvas id="urbanCanvas" width="800" height="500"></canvas>
+ <canvas id="cityGraph" width="600" height="400" aria-label="Interactive forecast of city size" role="img"></canvas>
 </section>
 
 <footer id="works">
@@ -159,10 +176,67 @@ new Chart(ctx2, {
   }
 });
 
-const ctx = document.getElementById("urbanCanvas").getContext("2d");
-const energyInput = document.getElementById("energy");
-const commsInput = document.getElementById("comms");
-const autonomyInput = document.getElementById("autonomy");
+// ----- interactive projection chart -----
+const years = Array.from({length:11}, (_,i)=>2025+i*10);
+const ctxProj = document.getElementById('cityGraph').getContext('2d');
+const energy = document.getElementById('energySlider');
+const remote = document.getElementById('remoteSlider');
+const comm   = document.getElementById('commSlider');
+const eVal = document.getElementById('energyVal');
+const rVal = document.getElementById('remoteVal');
+const cVal = document.getElementById('commVal');
+
+const sliderWidth = 2; // approx 1.5 pt
+const dashed = [6,4];
+
+const projChart = new Chart(ctxProj, {
+  type:'line',
+  data:{
+    labels:years,
+    datasets:[
+      {label:'Energy Cost Effect', data:[], borderColor:'#0072B2', borderWidth:sliderWidth, borderDash:dashed, fill:false},
+      {label:'Remote Work Effect', data:[], borderColor:'#D55E00', borderWidth:sliderWidth, borderDash:dashed, fill:false},
+      {label:'Comm Infra Effect',  data:[], borderColor:'#009E73', borderWidth:sliderWidth, borderDash:dashed, fill:false},
+      {label:'Projected City Size', data:[], borderColor:'#000', borderWidth:sliderWidth*3, fill:false}
+    ]
+  },
+  options:{
+    responsive:true,
+    scales:{
+      y:{type:'logarithmic',ticks:{callback:v=>v},min:100,max:1000000}
+    }
+  }
+});
+
+function updateSliderLabels(){
+  eVal.textContent = parseFloat(energy.value).toFixed(2);
+  rVal.textContent = remote.value + '%';
+  cVal.textContent = comm.value;
+}
+
+function calc(size,e,r,c){
+  return size*Math.pow(1/e,1)*Math.pow(1-r/100,1)*Math.pow(1-c/100,1);
+}
+
+function drawProj(){
+  updateSliderLabels();
+  const e=parseFloat(energy.value), r=parseFloat(remote.value), c=parseFloat(comm.value);
+  const base=1000000;
+  projChart.data.datasets[0].data = years.map(()=>calc(base,e,40,50));
+  projChart.data.datasets[1].data = years.map(()=>calc(base,1,r,50));
+  projChart.data.datasets[2].data = years.map(()=>calc(base,1,40,c));
+  projChart.data.datasets[3].data = years.map(()=>calc(base,e,r,c));
+  projChart.update();
+}
+
+energy.oninput = remote.oninput = comm.oninput = drawProj;
+drawProj();
+
+/* ——— mini-player logic ——— */
+const voice    = document.getElementById('voiceAudio'),
+      wrapper  = document.getElementById('voiceWrap'),
+      rewindBtn= document.getElementById('rewindBtn'),
+      stopBtn  = document.getElementById('stopBtn');
 
 const years = [2020, 2030, 2040, 2050, 2060, 2070, 2080];
 const baseUrban = [56, 60, 64, 68, 71, 74, 76];

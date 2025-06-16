@@ -16,11 +16,11 @@
 /* --- existing styles --- */
  body{font-family:"Neuton",system-ui,-apple-system,Segoe UI,Roboto,sans-serif;font-weight: 400; font-size: 1.5rem; letter-spacing:0.01em; line-height:1.6;margin:0;color:#222;background:#f8f9fa}
  body p{font-family: "Neuton", serif; font-weight: 400; font-style: normal;}
- body img{width:50%;height:auto;}
+ body img{width:50%;height:auto;display:block}
  header{font-family: "Candal", sans-serif;padding:0;text-align:center}
  header img{width:100%;height:auto;display:block}
  section{max-width:900px;margin:2rem auto;padding:0 1rem}
- h1{font-family: "Neuton", serif;font-weight:100; font-style: italic; font-size: 3rem; color:var(--teal);margin-top:0.5rem}
+ h1{font-family: "Neuton", serif;font-weight:100; font-style: italic; font-size: 3rem; color:var(--teal)}
  h2{font-family: "Candal", sans-serif;color:var(--teal);margin-top:0.5rem}
  canvas{max-width:100%;height:380px;margin:1rem 0;border:1px solid #ddd;border-radius:6px;background:#fff}
  .caption{font-size:.85rem;margin-top:-.5rem;color:#555;text-align:center}
@@ -54,18 +54,19 @@ nav.collapsed #navToggle{display:block}
   <img 
     src="images/surge.png" 
     alt="Workers moving from fields to factories"
-    style="float: left; max-width: 50%; height: auto; margin: 0 1em 1em 0;">
-  <h1 style="font-weight: normal; line-height: 1.5;">
+    style="float: left; max-width: 60%; height: auto; margin: 0 1em 0 0;">
+  <h1 style="font-weight: normal; line-height: 1.2;">
     Why the technologies of abundance
     that built the metropolis of today
     will lead us back to where it all began…
   </h1>
 </div>
  <h2>The Rural to Urban Pipeline</h2>
- <p>In 1950 barely <strong>30%</strong> of humanity lived in cities; by 2020 that share exceeded <strong>56%</strong>, powered by highways, antibiotics, silicon chips, and the promise of steady wages.  Urbanists framed density as civilization’s best climate hack—shorter commutes, smaller homes, richer streets.  That narrative still holds truth, yet the tools it celebrated are quietly rewiring the equation.  High-bandwidth networks, solar micro-grids, and autonomous logistics are erasing the old requirement to pile people and capital on the same GPS coordinates.<br><br>
- This presentation maps two crossing curves.  One is the <em>social trend</em> of urbanization that has dominated since the Industrial Revolution.  The other is a suite of <em>technological trends</em>—remote work, automation, cheap clean energy—whose long arcs now bend opportunity <em>outward</em>, toward smaller towns, “rurban” fringes, and regenerated village cores.  Follow the inflection and you glimpse an ecological, economical future that feels less like sprawl and more like <em>Infinite Exurbanism</em>.</p>
+ <p>In 1950 barely <strong>30%</strong> of humanity lived in cities; by 2020 that share exceeded <strong>56%</strong>, powered by highways, antibiotics, silicon chips, and the promise of steady wages. Urbanists framed density as civilization’s best climate hack — shorter commutes, smaller homes, more intentional communities. (Glaeser et al) That narrative still holds truth, yet the tools that brought about this change are still at work, eliminating commutes, changing the definition of home, and shifting our definitions of meaning and intentionality. High-bandwidth networks, solar micro-grids, and autonomous logistics are erasing the old requirement to pile people and capital on the same GPS coordinates.<br><br>
+This presentation maps two crossing curves. One is the <em>social trend</em> of urbanization that has dominated since the Industrial Revolution. The other is a suite of <em>technological trends</em> — remote work, automation, cheap clean energy — whose long arcs now bend opportunity <em>outward</em>, toward smaller towns, “rurban” fringes, and regenerated village cores. Follow the inflection and you glimpse an ecological, economical future that feels less like sprawl and more like <em>Infinite Exurbanism</em>.</p>
+ 
  <canvas id="chartUrban" aria-label="Line graph showing rising global urban population share from 1950 to 2050" role="img"></canvas>
- <p class="caption">Figure 1 Urban share of world population, 1950-2050 (UN projection).</p>
+ <p class="caption">Figure 1 Urban share of world population, 1950-2050 (United Nations).</p>
 </section>
 
 <section id="drivers">
@@ -73,36 +74,39 @@ nav.collapsed #navToggle{display:block}
   <img 
     src="images/drivers.png" 
     alt="The clockwork urban environment revealed"
-    style="float: left; max-width: 50%; height: auto; margin: 0 1em 1em 0;">
-  <h1 style="font-weight: normal; line-height: 1.5;">
-    When we arrived, our new homes of concrete, glass and steel sheltered us and offered us comfort and convenience…
+    style="float: left; max-width: 60%; height: auto; margin: 0 1em 0 0;">
+  <h1 style="font-weight: normal; line-height: 1.2;">
+    When we arrived, our new homes of brick, glass and iron sheltered us with comfort and convenience…
   </h1>
 </div>
  <h2>Numerous Factors Drive Migration</h2>
- <p><strong>Jobs first.</strong>  Factory floors and office towers concentrated capital and talent.  A single percentage-point rise in urban population correlated with roughly 1 % higher GDP per capita through the post-war boom.<sup>1</sup>  Cities also promised cultural ferment: jazz clubs, universities, queer bars, and immigrant kitchens, all within a subway ride.<br><br>
- <strong>Tech that eased the crowd.</strong>  Elevators, concrete, and HVAC stacked people skyward; penicillin tamed density’s diseases; later, broadband turned any cafe into a trading floor.  Suburbs emerged as a middle-class compromise—commutable distance paired with a patch of lawn—but they still orbited the metro core.</p>
-</section>
+ 
+ <p><strong>Jobs first.</strong> Factory floors and office towers concentrated capital and talent. A single percentage-point rise in urban population correlated with roughly 1% higher GDP per capita through the post-war boom (United Nations). Cities also promised cultural ferment: jazz clubs, universities, queer bars, and immigrant kitchens, all within a subway ride.<br><br>
+ Community can bring people together but it can also drive people apart. While the benefits of community are many, overcrowding and civil unrest can drive residents to yearn for what they lack. Migration is a fact of life.<br><br>
+ <strong>Tech that eased the crowd.</strong> Elevators, concrete, and HVAC stacked people skyward; penicillin tamed density’s diseases; later, broadband turned any cafe into a trading floor. Suburbs emerged as a middle-class compromise—commutable distance paired with a patch of lawn—but they still orbited the metro core.<br><br>
+ Innovation in itself isn’t a panacea to individual and societal ills. Yet, innovations in the distribution of goods and services allow for concentration of population in urban centers that have brought tremendous value to the human cultural experience. But, when further innovation drives down costs of distribution and alters the tradeoff, will migratory pressures of rural scarcity for urban plenty still drive behavior?</p>
+ </section>
 
 <section id="pivot">
 <div style="max-width: 100%; overflow: hidden;">
   <img 
     src="images/pivot.png" 
     alt="Alienation hits hard in an environment designed to accomodate machines"
-    style="float: left; max-width: 50%; height: auto; margin: 0 1em 1em 0;">
-  <h1 style="font-weight: normal; line-height: 1.5;">
-    We dreamed of greener pastures, and made home where we could, in canyons of glass and steel, fields of concrete and paint…
+    style="float: left; max-width: 60%; height: auto; margin: 0 1em 0 0;">
+  <h1 style="font-weight: normal; line-height: 1.2;">
+    We dreamed of greener pastures, while making home where we could: building canyons of glass and steel, plowing fields of concrete and paint…
   </h1>
 </div>
- <h2>Technology Unchains Place</h2>
- <p>Three accelerating trends flatten the old locational pyramid:</p>
+ <h2>Liberating Community from Location</h2>
+ <p>Until recently, it has been easier for people to move where the resources were. Migration patterns for all species follow similar trends: towards resources and away from dangers. Technological advancements are changing that equation, allowing us to better manage resources and enhance safety. Three accelerating trends flatten the old locational pyramid:</p>
  <ol>
-  <li><strong>Remote work.</strong> U.S. full-time remote employment leapt from <em>4 %</em> pre-2020 to <em>26 %</em> and remains above <em>20 %</em>, extending professional job markets far beyond city limits.<sup>3</sup></li>
+  <li><strong>Remote work.</strong> U.S. full-time remote employment leapt from <em>4%</em> pre-2020 to <em>26%</em> and remains above <em>20%</em>, extending professional job markets far beyond city limits. (Parker)</li>
   <li><strong>Automation.</strong> Robotics and AI carve the labor share out of manufacturing, logistics, and even surgery, shrinking the wage premium of big ports and rail hubs.</li>
-  <li><strong>Cheap clean kilowatts.</strong> Solar-PV costs fell <em>89 %</em> between 2010-2023; rural micro-grids now power farms and workshops miles from a substation.<sup>4</sup></li>
+  <li><strong>Cheap clean kilowatts.</strong> Solar-PV costs fell <em>89%</em> between 2010-2023; rural micro-grids now power farms and workshops miles from a substation. (International Energy Agency)</li>
  </ol>
- <p>The same fiber backbones that once funneled data <em>into</em> skyscrapers now let architects sketch from Montana and radiologists read scans from Oaxaca.  When productivity floats in the cloud, the gravitational pull of the CBD weakens.</p>
+ <p>The same fiber backbones that once funneled data <em>into</em> skyscrapers now let architects sketch from Montana and radiologists read scans from Oaxaca.  When productivity floats in the cloud, the gravitational pull of the business district weakens.</p>
  <canvas id="chartTech" aria-label="Dual-axis graph comparing growth of remote work and decline in solar PV costs" role="img"></canvas>
- <p class="caption">Figure 2 Key technological enablers favoring decentralized settlement.<br><span style="font-size:.8em">(Left axis: % U.S. full-time remote workers; Right axis: solar-PV cost index, 2010=100.)</span></p>
+ <p class="caption">Figure 2 Key technological enablers favoring decentralized settlement.<br><span style="font-size:.8em">Left axis: % U.S. full-time remote workers; Right axis: solar-PV cost index, 2010=100. (Parker / International Energy Agency)</span></p>
 </section>
 
 <section id="future">
@@ -110,24 +114,35 @@ nav.collapsed #navToggle{display:block}
   <img 
     src="images/future.png" 
     alt="The quiet and solitude of the exurbs"
-    style="float: left; max-width: 50%; height: auto; margin: 0 1em 1em 0;">
-  <h1 style="font-weight: normal; line-height: 1.5;">
+    style="float: left; max-width: 60%; height: auto; margin: 0 1em 0 0;">
+  <h1 style="font-weight: normal; line-height: 1.2;">
     Meanwhile, the same technologies that enabled urban sustainability, enhanced the quiet and solitude of the exurbs, and resistance to urbanization began…
   </h1>
 </div>
  <h2>Toward <em>Infinite Exurbanism</em></h2>
  <p>Combine those vectors and a new settlement pattern emerges:</p>
  <ul>
-  <li><strong>Micro-communities</strong> of 500 – 5 000 people, stitched by fiber and drone, share maker-spaces, community solar, and bioremediation wetlands.</li>
+  <li><strong>Micro-communities</strong> of 500 to 5,000 people, stitched by fiber and drone, share maker-spaces, community solar, and bioremediation wetlands.</li>
   <li><strong>Polycentric regions</strong> replace the spoke-and-hub commute: autonomous e-shuttles link villages for weekly markets; most daily interaction happens online.</li>
   <li><strong>Ecological dividends</strong> flow not from an urban exodus but from load-balancing.  Less land is paved for parking; distributed agriculture shortens supply chains; secondary forests reclaim vacated lots.</li>
  </ul>
- The shift is incremental—families leaving the Bay Area for Boise, freelancers trading Brooklyn rent for Catskills homesteads—but the curve is bending.  The UN projects that by 2035, absolute growth in small-town populations will outpace that of mega-cities for the first time.<sup>1</sup>  Place is becoming a <em>choice</em> again, and that transforms citizenship from passive residence to active design challenge.</p>
+ The shift is incremental—families leaving the Bay Area for Boise, freelancers trading Brooklyn rent for Catskills homesteads—but the curve is bending.  The UN projects that by 2035, absolute growth in small-town populations will outpace that of mega-cities for the first time. Place is becoming a <em>choice</em> again, and that transforms citizenship from passive residence to active design challenge.</p>
 </section>
 
 <section id="call">
+<div style="max-width: 100%; overflow: hidden;">
+  <img 
+    src="images/architect.png" 
+    alt="What does the future hold?"
+    style="float: left; max-width: 60%; height: auto; margin: 0 1em 0 0;">
+  <h1 style="font-weight: normal; line-height: 1.2;">
+    If you could remake your world in your image, where would you start and who would accompany you on your journey?…
+  </h1>
+</div>
  <h2>Your Turn as Architect</h2>
- <p>If home and work are decoupled, communities can compete on meaning, not just wages.  Rural cooperatives that embrace broadband, universal design, and circular economics will attract talent and capital—without importing sprawl.  The next decade’s civic innovators will write zoning that welcomes accessory dwellings, spectrum policy that treats wireless like water, and cultural storytelling that paints the countryside as lab, not museum.  In short: we are called, in Buckminster Fuller’s words, “to be architects of the future, not its victims.”  The drawings start now—where will <em>you</em> pin your next village on the map?</p>
+ <p>If home and work are decoupled, communities can compete on meaning, not just wages. Rural cooperatives that embrace broadband, universal design, and circular economics will attract talent and capital—without importing sprawl. The next decade’s civic innovators will write zoning that welcomes accessory dwellings, spectrum policy that treats wireless like water, and cultural storytelling that paints the countryside as lab, not museum. In short: we are called, in Buckminster Fuller’s words, “to be architects of the future, not its victims.”<br><br>
+Below are two levers of technological progress—energy production that is local, renewable, and environmentally neutral; and communications infrastructure that replaces the need to move goods and people physically, enabling mass-scale, distributed problem-solving. Alongside these is a social lever: progress toward work autonomy, where individuals contribute directly to their own welfare, their immediate social group, and the broader community—freely chosen, not imposed from above, and benefiting all involved.<br><br>
+Innovation in these three areas alone is enough to bend the curve back toward ruralization, and yet these are just three of a myriad of factors that are influencing ongoing change. The humans drive to create meaning and purpose remains the most powerful factor of all. What future for yourself and your community will you be building towards?</p>
  <h3>Urbanization Projections Change with Influencing Factors</h3>
  <div class="controls">
    <label>Energy Production:
@@ -141,19 +156,21 @@ nav.collapsed #navToggle{display:block}
    </label>
  </div>
  <canvas id="urbanCanvas" width="800" height="500"></canvas>
+ <p class="caption">Figure 3 Example Tech and Social Inputs Subvert Urbanization Trends<br><span style="font-size:.8em">Left axis: Urban share of world population. Energy/Comms/Autonomy scales 0-100%, Default 25%. Adjusted Urban % derived by applying ruralization inputs as modifiers to urbanization trajectory. (Glaeser et al / United Nations)</span></p>
+ 
 </section>
 
 <footer id="works">
  <h2>Works Cited (MLA)</h2>
- <ol>
-	<li>ChatGPT generated images, code and language on this page.</li>
+ <ul>
+	<li>ChatGPT generated images, code and modified language on this page.</li>
 	<li>Glaeser, Edward L. <em>Triumph of the City: How Our Greatest Invention Makes Us Richer, Smarter, Greener, Healthier, and Happier</em>. Penguin Press, 2011.</li> 
 	<li>Hannah Ritchie, Veronika Samborska, and Max Roser (2024). “Urbanization” Published online at <em>OurWorldinData.org</em>. Retrieved from: 'https://ourworldindata.org/urbanization' [Online Resource] Accessed: 12 June 2025</li>
 	<li>International Energy Agency. <em>World Energy Outlook 2024.</em> https://www.iea.org/reports/world-energy-outlook-2024 IEA, October 2024. Accessed: 12 June 2025</li>
 	<li>Parker, Kim. “COVID‑19 Pandemic Continues to Reshape Work in America.” <em>Pew Research Center</em>, 16 Feb. 2022, www.pewresearch.org/social-trends/2022/02/16/covid-19-pandemic-continues-to-reshape-work-in-america/. Accessed: 12 June 2025</li>
 	<li>United Nations (2024). <em>World Population Prospects 2024: Summary of Results.</em> UN DESA/POP/2024/TR/NO. 9. https://population.un.org/wup/ New York: United Nations. Accessed: 12 June 2025</li>
- </ol>
- <p><i>Presentation created 13 June 2025 by Johanna Wilder for English 279 at <a href="https://www.shoreline.edu/" target=new>Shoreline College</a> for Prof. Kayleen Kondrack-Caranto<i></p>
+ </ul>
+ <p><i>Presentation created 15 June 2025 by Johanna Wilder for English 279 at <a href="https://www.shoreline.edu/" target=new>Shoreline College</a> for Prof. Kayleen Kondrack-Caranto<i> (<a href="https://www.github.com/wildjo/infinite-exurbanism/" target=new>Source code</a>)</p>
 </footer>
 
 <!-- Simple vertical navigation -->
@@ -239,8 +256,8 @@ const urbanChart = new Chart(ctx3, {
   data: {
     labels: years,
     datasets: [
-      { label: 'Urban % (UN Baseline)', data: baseUrban, borderColor: '#0a5c55', borderWidth: 2, tension: .3, fill: false },
-      { label: 'Adjusted Urban %', data: baseUrban.slice(), borderColor: '#000', borderWidth: 3, tension: .3, fill: false },
+      { label: 'Urban % (UN Baseline)', data: baseUrban, borderColor: '#0a5c55', borderWidth: 3, tension: .3, fill: false },
+      { label: 'Adjusted Urban %', data: baseUrban.slice(), borderColor: '#000', borderWidth: 8, tension: .3, fill: false },
       { label: 'Energy', data: influenceLine(energyInput.value), borderColor: '#e63946', borderWidth: 1, tension: .3, fill: false },
       { label: 'Comms', data: influenceLine(commsInput.value), borderColor: '#3a86ff', borderWidth: 1, tension: .3, fill: false },
       { label: 'Autonomy', data: influenceLine(autonomyInput.value), borderColor: '#ff006e', borderWidth: 1, tension: .3, fill: false }
